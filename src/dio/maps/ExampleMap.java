@@ -54,5 +54,56 @@ public class ExampleMap {
                 modeloMaisEficiente = entry.getKey();
         }
         System.out.println(modeloMaisEficiente + " " + max);
+
+        Double min = Collections.min(carrosPopulares.values());
+        Set<Map.Entry<String, Double>> entries1 = carrosPopulares.entrySet();
+
+        String modeloMenosEficiente = "";
+        for (Map.Entry<String, Double> entry : entries1) {
+            if (entry.getValue().equals(min))
+                modeloMenosEficiente = entry.getKey();
+        }
+        System.out.println("Menos eficiente: " + modeloMenosEficiente + " " + min);
+
+        System.out.println("Exiba a soma dos consumos: ");
+        int soma = 0;
+        Iterator<Double> iterator = carrosPopulares.values().iterator();
+        while(iterator.hasNext()) {
+            soma += iterator.next();
+        }
+        System.out.println(soma);
+        System.out.println("Média: " + soma / carrosPopulares.size());
+
+        System.out.println("Remova os carros com consumos 15.6: ");
+        Iterator<Double> iterator1 = carrosPopulares.values().iterator();
+        if (iterator1.hasNext()) {
+            if (iterator1.next().equals(15.6)) iterator1.remove();
+        }
+        System.out.println(carrosPopulares);
+
+        System.out.println("Crie um dicionário com ordem de inserção: ");
+        Map<String, Double> carrosPopulares2 = new LinkedHashMap<>() {{
+            put("gol", 14.4);
+            put("uno", 15.6);
+            put("mobi", 16.1);
+            put("hb20", 14.5);
+            put("kwid", 15.6);
+        }};
+        System.out.println(carrosPopulares2);
+
+        System.out.println("Exiba o dicionário pelo modelo: ");
+        Map<String, Double> carrosPopulares3 = new TreeMap<>() {{
+            put("gol", 14.4);
+            put("uno", 15.6);
+            put("mobi", 16.1);
+            put("hb20", 14.5);
+            put("kwid", 15.6);
+        }};
+        System.out.println(carrosPopulares3);
+
+        System.out.println("Apague o dicionário de carros: ");
+        carrosPopulares.clear();
+        System.out.println("Está vazio? " + carrosPopulares.isEmpty());
+
     }
 }
